@@ -9,6 +9,7 @@ import {
 } from "../productSlice";
 import { useParams } from "react-router-dom";
 import { addToCartAsync } from "../../cart/cartSlice";
+import { selectLoggedInUser } from "../../auth/authSlice";
 
 //TODO: In server data we will add colours, sizes, highlights .to each product
 
@@ -41,14 +42,16 @@ function classNames(...classes) {
 export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-  const user = useSelector(selectProductById);
+  const user = useSelector(selectLoggedInUser);
   const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams();
 
   const handleCart = (e) => {
     e.preventDefault();
-    dispatch(addToCartAsync({ ...product, quantity: 1, user: user.id }));
+    const newItem = { ...product, quantity: 1, user: user.id };
+    delete newItem["id"];
+    dispatch(addToCartAsync(newItem));
   };
 
   useEffect(() => {
