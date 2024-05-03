@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUserOrdersAsync, selectUserOrders } from "../userSlice";
+import {
+  fetchLoggedInUserOrdersAsync,
+  selectUserInfo,
+  selectUserOrders,
+} from "../userSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
 
   useEffect(() => {
@@ -88,7 +92,7 @@ export default function UserOrders() {
                       {order.selectedAddress.street}
                     </p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      {order.selectedAddress.pincode}
+                      {order.selectedAddress.pinCode}
                     </p>
                   </div>
                 </div>
