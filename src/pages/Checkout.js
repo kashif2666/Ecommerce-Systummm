@@ -11,7 +11,10 @@ import {
   updateUserAsync,
 } from "../features/auth/authSlice";
 import { useState } from "react";
-import { createOrderAsync } from "../features/order/orderSlice";
+import {
+  createOrderAsync,
+  selectCurrentOrder,
+} from "../features/order/orderSlice";
 
 // const addresses = [
 //   {
@@ -44,6 +47,7 @@ function Checkout() {
   } = useForm();
 
   const user = useSelector(selectLoggedInUser);
+  const currentOrder = useSelector(selectCurrentOrder);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
@@ -71,22 +75,35 @@ function Checkout() {
   };
 
   const handleOrder = (e) => {
-    const order = {
-      items,
-      totalAmount,
-      totalItems,
-      user,
-      paymentMethod,
-      selectedAddress,
-    };
-    dispatch(createOrderAsync(order));
+    if (selectedAddress && paymentMethod) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        paymentMethod,
+        selectedAddress,
+        status: "pending", // other status can be delivered or received
+      };
+      dispatch(createOrderAsync(order));
+      // need to redirect from here to a new page of order success
+    } else {
+      // TODO: we can you proper messaging popup here
+      alert("Enter Address and Payment Method");
+    }
     //TODO: redirect to order-success page
     //TODO: clear cart after order
-    //TODO: on server change the stock number of items 
+    //TODO: on server change the stock number of items
   };
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {currentOrder && (
+        <Navigate
+          to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
