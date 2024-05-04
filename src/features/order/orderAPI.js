@@ -7,7 +7,36 @@ export function createOrder(order) {
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
-    //TODO: on server it will only return releveant info of user (not password)
     resolve({ data });
+  });
+}
+export function updateOrder(order) {
+  return new Promise(async (resolve) => {
+    const response = await fetch("http://localhost:8080/orders/" + order.id, {
+      method: "PATCH",
+      body: JSON.stringify(order),
+      headers: { "content-type": "application/json" },
+    });
+    const data = await response.json();
+    resolve({ data });
+  });
+}
+
+export function fetchAllOrders(pagination, sort) {
+  let queryString = "";
+  for (let key in pagination) {
+    queryString += `${key}=${pagination[key]}&`;
+  }
+  for (let key in sort) {
+    queryString += `${key}=${sort[key]}&`;
+  }
+  return new Promise(async (resolve) => {
+    //TODO: we will not hard-code server URL here
+    const response = await fetch("http://localhost:8080/orders?" + queryString);
+    const data = await response.json();
+    const products = data.data;
+    const totalOrders = data.items;
+    console.log("This is total items list :" + totalOrders); // X-total-Count
+    resolve({ data: { orders: products, totalOrders: totalOrders } });
   });
 }

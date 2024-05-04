@@ -52,7 +52,7 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   // sort={_sort:"-price"}
   // pagination= {_page:1, _limit:10}
   // TODO: on server we will use multiple values
-  // TODO: server will filter the deleted products
+  // TODO: server will filter the deleted products in case of non admin
 
   let queryString = "";
   for (let key in filter) {
