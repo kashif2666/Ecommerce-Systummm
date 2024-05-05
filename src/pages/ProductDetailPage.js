@@ -1,4 +1,5 @@
 import Navbar from "../features/Navbar/Navbar";
+import Footer from "../features/common/Footer";
 import ProductDetail from "../features/product/components/ProductDetail";
 
 function ProductDetailPage() {
@@ -7,6 +8,7 @@ function ProductDetailPage() {
       <Navbar>
         <ProductDetail></ProductDetail>
       </Navbar>
+      <Footer></Footer>
     </div>
   );
 }

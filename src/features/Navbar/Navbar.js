@@ -41,7 +41,7 @@ function Navbar({ children }) {
                       <Link to="/">
                         <img
                           className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                          src="https://raw.githubusercontent.com/coderdost/MERN-ecommerce-Frontend/d71d12f8cf8bd03e9fd329e0101eec02fc8833bc/public/ecommerce.png"
                           alt="Your Company"
                         />
                       </Link>
