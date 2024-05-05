@@ -23,8 +23,8 @@ export default function Signup() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://raw.githubusercontent.com/coderdost/MERN-ecommerce-Frontend/d71d12f8cf8bd03e9fd329e0101eec02fc8833bc/public/ecommerce.png"
+            className="mx-auto h-20 w-auto"
+            src="https://raw.githubusercontent.com/kashif2666/MERNStack-Ecommerce/df0099e87d50315692f6132fcc9a4dee265176b2/public/logo4.png"
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

@@ -40,8 +40,8 @@ function Navbar({ children }) {
                     <div className="flex-shrink-0">
                       <Link to="/">
                         <img
-                          className="h-8 w-8"
-                          src="https://raw.githubusercontent.com/coderdost/MERN-ecommerce-Frontend/d71d12f8cf8bd03e9fd329e0101eec02fc8833bc/public/ecommerce.png"
+                          className="h-20 w-20"
+                          src="https://raw.githubusercontent.com/kashif2666/MERNStack-Ecommerce/df0099e87d50315692f6132fcc9a4dee265176b2/public/logo4.png"
                           alt="Your Company"
                         />
                       </Link>
