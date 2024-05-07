@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
 import Modal from "../../common/Modal";
 function ProductForm() {
   const brands = useSelector(selectBrands);
@@ -29,6 +30,7 @@ function ProductForm() {
     formState: { errors },
   } = useForm();
 
+  const alert = useAlert();
   useEffect(() => {
     if (params.id) {
       dispatch(fetchProductByIdAsync(params.id));
@@ -86,9 +88,11 @@ function ProductForm() {
             product.rating = selectedProduct.rating || 0;
 
             dispatch(updateProductAsync(product));
+            alert.success("Product Updated");
             reset();
           } else {
             dispatch(createProductAsync(product));
+            alert.success("Product Created");
             reset();
 
             // TPDO:on product successfully added clear field and show message
@@ -102,12 +106,14 @@ function ProductForm() {
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              {selectedProduct.deleted && (
-                <h2 className="text-red-500 ">This product is deleted. </h2>
+              {selectedProduct && selectedProduct.deleted && (
+                <h2 className="text-red-500 sm:col-span-6 ">
+                  This product is deleted.{" "}
+                </h2>
               )}
               <div className="sm:col-span-6">
                 <label
-                  htmlFor="username"
+                  htmlFor="title"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Product Name
@@ -128,7 +134,7 @@ function ProductForm() {
 
               <div className="col-span-full">
                 <label
-                  htmlFor="about"
+                  htmlFor="description"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Description
@@ -450,15 +456,17 @@ function ProductForm() {
         </div>
       </form>
 
-      <Modal
-        title={`Delete ${selectedProduct.title}`}
-        message="Are you sure you want to delete this Product ?"
-        dangerOption="Delete"
-        cancelOption="Cancel"
-        dangerAction={handleDelete}
-        cancelAction={() => setOpenModal(null)}
-        showModal={openModal}
-      ></Modal>
+      {selectedProduct && (
+        <Modal
+          title={`Delete ${selectedProduct.title}`}
+          message="Are you sure you want to delete this Product ?"
+          dangerOption="Delete"
+          cancelOption="Cancel"
+          dangerAction={handleDelete}
+          cancelAction={() => setOpenModal(null)}
+          showModal={openModal}
+        ></Modal>
+      )}
     </>
   );
 }

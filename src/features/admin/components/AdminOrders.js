@@ -7,8 +7,14 @@ import {
   selectTotatOrders,
   updateOrderAsync,
 } from "../../order/orderSlice";
-import { EyeIcon, PencilIcon } from "@heroicons/react/24/outline";
+
 import Pagination from "../../common/Pagination";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  EyeIcon,
+  PencilIcon,
+} from "@heroicons/react/24/outline";
 
 function AdminOrders() {
   const dispatch = useDispatch();
@@ -81,7 +87,7 @@ function AdminOrders() {
                       Order#
                     </th>
                     <th className="py-3 px-6 text-left">Items</th>
-                    <th className="py-3 px-6 text-center">Total Amount</th>
+                    <th className="py-3 px-6 text-center">Total Amount </th>
                     <th className="py-3 px-6 text-center">Shipping Address</th>
                     <th className="py-3 px-6 text-center">Status</th>
                     <th className="py-3 px-6 text-center">Actions</th>
@@ -105,12 +111,13 @@ function AdminOrders() {
                             <div className="mr-2">
                               <img
                                 className="w-6 h-6 rounded-full"
-                                src={item.thumbnail}
+                                src={item.product.thumbnail}
+                                alt={item.product.title}
                               />
                             </div>
                             <span>
-                              {item.title} - #{item.quantity} - $
-                              {discountedPrice(item)}
+                              {item.product.title} - #{item.quantity} - $
+                              {discountedPrice(item.product)}
                             </span>
                           </div>
                         ))}

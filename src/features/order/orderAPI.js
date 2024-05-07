@@ -40,6 +40,6 @@ export function fetchAllOrders(pagination, sort) {
     const totalOrders = await response.headers.get("X-Total-Count");
     // const totalItems = data.items;
     console.log("This is total items list :" + totalOrders); // X-total-Count
-    resolve({ data: { orders: products, totalItems: totalOrders } });
+    resolve({ data: { orders: products, totalOrders: +totalOrders } });
   });
 }
