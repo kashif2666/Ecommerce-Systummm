@@ -3544,6 +3544,72 @@
         "pinCode": "832110"
       },
       "status": "pending"
+    },
+    {
+      "id": "0fcb",
+      "items": [
+        {
+          "id": "1c8a",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "deleted": true,
+          "productId": "2",
+          "quantity": 1,
+          "user": "2189"
+        }
+      ],
+      "totalAmount": 738,
+      "totalItems": 1,
+      "user": {
+        "id": "2189",
+        "email": "kashifjsr7@gmail.com",
+        "password": "Kashif123",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Kashif Anwar",
+            "email": "kashifjsr7@gmail.com",
+            "phone": "9060262877",
+            "street": "Road no 18, Zakir Nagar",
+            "city": "JAMSHEDPUR",
+            "state": "JHARKHAND",
+            "pinCode": "832110"
+          },
+          {
+            "name": "Sandeep Kumar",
+            "email": "sandy@gmail.com",
+            "phone": "11122000334",
+            "city": "Dhanbad",
+            "street": "03",
+            "state": "Jharkhand",
+            "pinCode": "2220030"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Sandeep Kumar",
+        "email": "sandy@gmail.com",
+        "phone": "11122000334",
+        "city": "Dhanbad",
+        "street": "03",
+        "state": "Jharkhand",
+        "pinCode": "2220030"
+      },
+      "status": "pending"
     }
   ]
 }

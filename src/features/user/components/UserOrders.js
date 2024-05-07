@@ -16,7 +16,7 @@ export default function UserOrders() {
   useEffect(() => {
     console.log("Problem hora bhai" + user.id);
     dispatch(fetchLoggedInUserOrdersAsync(user.id));
-  }, []);
+  }, [dispatch, user]);
 
   return (
     <div>
