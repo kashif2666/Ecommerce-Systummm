@@ -6,7 +6,6 @@ import {
 } from "./userAPI";
 
 const initialState = {
-  userOrders: [],
   status: "idle",
   userInfo: null, //This will be used in case of detailed user info while auth will only be used for loggedInUser id etc checks
 };
@@ -54,7 +53,7 @@ export const userSlice = createSlice({
       .addCase(fetchLoggedInUserOrdersAsync.fulfilled, (state, action) => {
         state.status = "idle";
         // this info can be different or more from loggedIn user info
-        state.userOrders = action.payload;
+        state.userInfo.orders = action.payload;
       })
 
       .addCase(updateUserAsync.pending, (state) => {
@@ -62,6 +61,7 @@ export const userSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
+        //earlier there was loggedInUser variable in other Slice
         state.userInfo = action.payload;
       })
       .addCase(fetchLoggedInUserAsync.pending, (state) => {
@@ -76,7 +76,7 @@ export const userSlice = createSlice({
 
 export const { increment } = userSlice.actions;
 //TODO: change oreders and address to be independent of user;
-export const selectUserOrders = (state) => state.user.userOrders;
+export const selectUserOrders = (state) => state.user.userInfo.orders;
 export const selectUserInfo = (state) => state.user.userInfo;
 
 export default userSlice.reducer;

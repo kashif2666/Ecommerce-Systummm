@@ -6,7 +6,7 @@ import {
   selectItems,
   updateCartAsync,
 } from "../features/cart/cartSlice";
-import { updateUserAsync } from "../features/auth/authSlice";
+import { updateUserAsync } from "../features/user/userSlice";
 import { useState } from "react";
 import {
   createOrderAsync,
