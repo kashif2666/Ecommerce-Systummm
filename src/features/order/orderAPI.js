@@ -33,10 +33,13 @@ export function fetchAllOrders(pagination, sort) {
   return new Promise(async (resolve) => {
     //TODO: we will not hard-code server URL here
     const response = await fetch("http://localhost:8080/orders?" + queryString);
+
     const data = await response.json();
-    const products = data.data;
-    const totalOrders = data.items;
+    console.log({ data });
+    const products = data;
+    const totalOrders = await response.headers.get("X-Total-Count");
+    // const totalItems = data.items;
     console.log("This is total items list :" + totalOrders); // X-total-Count
-    resolve({ data: { orders: products, totalOrders: totalOrders } });
+    resolve({ data: { orders: products, totalItems: totalOrders } });
   });
 }
