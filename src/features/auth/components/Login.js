@@ -7,7 +7,7 @@ import {
   selectLoggedInUser,
 } from "../authSlice";
 import { useForm } from "react-hook-form";
-import { checkUserAsync } from "../authSlice";
+import { loginUserAsync } from "../authSlice";
 
 import { Link, Navigate } from "react-router-dom";
 
@@ -45,7 +45,7 @@ export default function Login() {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(
-                checkUserAsync({ email: data.email, password: data.password })
+                loginUserAsync({ email: data.email, password: data.password })
               );
               console.log(data);
             })}

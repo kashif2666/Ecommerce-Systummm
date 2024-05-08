@@ -12,7 +12,7 @@ export function createUser(userData) {
   });
 }
 
-export function checkUser(loginInfo) {
+export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     // const email = loginInfo.email;
     // const password = loginInfo.password;
@@ -23,6 +23,35 @@ export function checkUser(loginInfo) {
         body: JSON.stringify(loginInfo),
         headers: { "content-type": "application/json" },
       });
+
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (error) {
+      reject(error);
+    }
+
+    // if (data.length) {
+    //   if (password === data[0].password) {
+    //     resolve({ data: data[0] });
+    //   } else {
+    //     reject({ message: "Wrong Credentials" });
+    //   }
+    // } else {
+    //   reject({ message: "user not found" });
+    // }
+    //TODO: on server it will only return releveant info of user (not password)
+  });
+}
+
+export function checkAuth() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("http://localhost:8080/auth/check");
 
       if (response.ok) {
         const data = await response.json();
