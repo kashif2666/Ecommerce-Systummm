@@ -155,22 +155,24 @@ function Navbar({ children }) {
 
                 <Disclosure.Panel className="md:hidden">
                   <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                    {navigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "block rounded-md px-3 py-2 text-base font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
+                    {navigation.map((item) =>
+                      item[userInfo.role] ? (
+                        <Disclosure.Button
+                          key={item.name}
+                          as="a"
+                          href={item.link}
+                          className={classNames(
+                            item.current
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "block rounded-md px-3 py-2 text-base font-medium"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </Disclosure.Button>
+                      ) : null
+                    )}
                   </div>
                   <div className="border-t border-gray-700 pb-3 pt-4">
                     <div className="flex items-center px-5">
@@ -213,7 +215,7 @@ function Navbar({ children }) {
                         <Disclosure.Button
                           key={item.name}
                           as="a"
-                          href={item.href}
+                          href={item.link}
                           className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                         >
                           {item.name}
