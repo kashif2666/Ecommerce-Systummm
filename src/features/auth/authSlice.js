@@ -50,8 +50,8 @@ export const checkAuthAsync = createAsyncThunk("user/checkAuth", async () => {
     console.log(error);
   }
 });
-export const signOutAsync = createAsyncThunk("user/signOut", async (userId) => {
-  const response = await signOut(userId);
+export const signOutAsync = createAsyncThunk("user/signOut", async () => {
+  const response = await signOut();
   // The value we return becomes the `fulfilled` action payload
   return response.data;
 });

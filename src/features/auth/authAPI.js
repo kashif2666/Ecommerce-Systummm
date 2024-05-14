@@ -63,24 +63,24 @@ export function checkAuth() {
     } catch (error) {
       reject(error);
     }
-
-    // if (data.length) {
-    //   if (password === data[0].password) {
-    //     resolve({ data: data[0] });
-    //   } else {
-    //     reject({ message: "Wrong Credentials" });
-    //   }
-    // } else {
-    //   reject({ message: "user not found" });
-    // }
-    //TODO: on server it will only return releveant info of user (not password)
   });
 }
 
 export function signOut(userId) {
-  return new Promise(async (resolve) => {
-    //TODO: on server it will remove user session info
-    resolve({ data: "success" });
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("/auth/logout");
+
+      if (response.ok) {
+        resolve({ data: "success" });
+      } else {
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
   });
 }
 
@@ -103,17 +103,6 @@ export function resetPasswordRequest(email) {
     } catch (error) {
       reject(error);
     }
-
-    // if (data.length) {
-    //   if (password === data[0].password) {
-    //     resolve({ data: data[0] });
-    //   } else {
-    //     reject({ message: "Wrong Credentials" });
-    //   }
-    // } else {
-    //   reject({ message: "user not found" });
-    // }
-    //TODO: on server it will only return releveant info of user (not password)
   });
 }
 
