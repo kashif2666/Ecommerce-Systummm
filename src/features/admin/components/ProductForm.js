@@ -154,8 +154,6 @@ function ProductForm() {
             dispatch(createProductAsync(product));
             alert.success("Product Created");
             reset();
-
-            // TPDO:on product successfully added clear field and show message
           }
         })}
       >

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 import {
   fetchAllOrdersAsync,
   selectOrders,
@@ -72,7 +72,6 @@ function AdminOrders() {
   useEffect(() => {
     const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
     dispatch(fetchAllOrdersAsync({ pagination, sort }));
-    // TODO: server will filter the deleted products
   }, [dispatch, page, sort]);
   return (
     <>
@@ -128,7 +127,7 @@ function AdminOrders() {
                             </div>
                             <span>
                               {item.product.title} - #{item.quantity} - $
-                              {discountedPrice(item.product)}
+                              {item.product.discountPrice}
                             </span>
                           </div>
                         ))}

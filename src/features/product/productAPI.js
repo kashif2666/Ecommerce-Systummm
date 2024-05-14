@@ -3,7 +3,6 @@
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
     console.log("This is item boss" + id);
-    //TODO: we will not hard-code server URL here
     const response = await fetch("/products/" + id);
     const data = await response.json();
     resolve({ data });
@@ -12,7 +11,6 @@ export function fetchProductById(id) {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    //TODO: we will not hard-code server URL here
     const response = await fetch(`/products/`, {
       method: "POST",
       body: JSON.stringify(product),
@@ -31,7 +29,6 @@ export function updateProduct(update) {
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
-    //TODO: on server it will only return releveant info of user (not password)
     resolve({ data });
   });
 }
@@ -40,15 +37,12 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
   // filter={"category":"smartphone"}
   // sort={_sort:"-price"}
   // pagination= {_page:1, _limit:10}
-  // TODO: on server we will use multiple values
-  // TODO: server will filter the deleted products in case of non admin
 
   let queryString = "";
   for (let key in filter) {
     const categoryValues = filter[key];
     if (categoryValues.length) {
-      const lastCategoryValue = categoryValues[categoryValues.length - 1];
-      queryString += `${key}=${lastCategoryValue}&`;
+      queryString += `${key}=${categoryValues}&`;
     }
   }
   for (let key in sort) {
@@ -62,7 +56,6 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
     queryString += `admin=true`;
   }
   return new Promise(async (resolve) => {
-    //TODO: we will not hard-code server URL here
     const response = await fetch("/products?" + queryString);
     const data = await response.json();
     console.log({ data });

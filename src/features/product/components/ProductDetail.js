@@ -11,17 +11,7 @@ import {
 } from "../productSlice";
 import { useParams } from "react-router-dom";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
-import { discountedPrice } from "../../../app/constants";
 import { Grid } from "react-loader-spinner";
-
-//TODO: In server data we will add colours, sizes, highlights .to each product
-
-const highlights = [
-  "Hand cut and sewn locally",
-  "Dyed with our proprietary colors",
-  "Pre-washed & pre-shrunk",
-  "Ultra-soft 100% cotton",
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -51,8 +41,7 @@ export default function ProductDetail() {
       if (selectedSize) {
         newItem.size = selectedSize;
       }
-      dispatch(addToCartAsync(newItem));
-      // TODO: it will be based on server response of backend
+      dispatch(addToCartAsync({ item: newItem, alert }));
       alert.success("Item added to Cart ");
     } else {
       alert.error("Item alreday added to Cart ");
@@ -168,7 +157,7 @@ export default function ProductDetail() {
                 ${product.price}
               </p>
               <p className="text-3xl  tracking-tight text-gray-900">
-                ${discountedPrice(product)}
+                ${product.discountPrice}
               </p>
 
               {/* Reviews */}

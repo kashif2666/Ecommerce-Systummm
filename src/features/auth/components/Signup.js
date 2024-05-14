@@ -43,7 +43,6 @@ export default function Signup() {
                   password: data.password,
                   addresses: [],
                   role: "user",
-                  // TODO: this role can be given in the backend later on.
                 })
               );
               console.log(data);

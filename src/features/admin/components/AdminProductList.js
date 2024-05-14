@@ -28,8 +28,8 @@ import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "-rating", current: false },
-  { name: "Price: Low to High", sort: "price", current: false },
-  { name: "Price: High to Low", sort: "-price", current: false },
+  { name: "Price: Low to High", sort: "discountPrice", current: false },
+  { name: "Price: High to Low", sort: "-discountPrice", current: false },
 ];
 
 function classNames(...classes) {
@@ -64,6 +64,7 @@ export default function AdminProductList() {
   const handleFilter = (e, section, option) => {
     console.log(e.target.checked);
     const newFilter = { ...filter };
+
     if (e.target.checked) {
       if (newFilter[section.id]) {
         newFilter[section.id].push(option.value);
@@ -528,10 +529,7 @@ function ProductGrid({ data }) {
                     </div>
                     <div>
                       <p className="text-sm block font-medium text-gray-900">
-                        ${" "}
-                        {Math.round(
-                          product.price * (1 - product.discountPercentage / 100)
-                        )}
+                        $ {product.discountPrice}
                       </p>
                       <p className="text-sm block line-through font-medium text-gray-400">
                         $ {product.price}

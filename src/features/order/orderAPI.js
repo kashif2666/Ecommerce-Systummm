@@ -31,7 +31,6 @@ export function fetchAllOrders(pagination, sort) {
     queryString += `${key}=${sort[key]}&`;
   }
   return new Promise(async (resolve) => {
-    //TODO: we will not hard-code server URL here
     const response = await fetch("/orders?" + queryString);
 
     const data = await response.json();

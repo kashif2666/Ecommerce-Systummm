@@ -7,7 +7,6 @@ export function createUser(userData) {
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
-    //TODO: on server it will only return releveant info of user (not password)
     resolve({ data });
   });
 }
@@ -44,7 +43,6 @@ export function loginUser(loginInfo) {
     // } else {
     //   reject({ message: "user not found" });
     // }
-    //TODO: on server it will only return releveant info of user (not password)
   });
 }
 

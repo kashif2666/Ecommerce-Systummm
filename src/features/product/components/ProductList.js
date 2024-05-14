@@ -26,13 +26,13 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import { fetchProductsByFilters } from "../productAPI";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 import Pagination from "../../common/Pagination";
 
 const sortOptions = [
   { name: "Best Rating", sort: "-rating", current: false },
-  { name: "Price: Low to High", sort: "price", current: false },
-  { name: "Price: High to Low", sort: "-price", current: false },
+  { name: "Price: Low to High", sort: "discountPrice", current: false },
+  { name: "Price: High to Low", sort: "-discountPrice", current: false },
 ];
 
 function classNames(...classes) {
@@ -99,8 +99,6 @@ export default function ProductList() {
   useEffect(() => {
     const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
-
-    // TODO: server will filter the deleted products
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {
@@ -452,7 +450,7 @@ function ProductGrid({ data, status }) {
                     </div>
                     <div>
                       <p className="text-sm block font-medium text-gray-900">
-                        $ {discountedPrice(product)}
+                        $ {product.discountPrice}
                       </p>
                       <p className="text-sm block line-through font-medium text-gray-400">
                         $ {product.price}
